@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # Servicio de la API Spring Boot
+  api:
+    build: .
+    container_name: spring_boot_api
+    ports:
+      - "8080:8080"
+      - "5005:5005"
+    volumes:
+      - ./src:/app/src  # Montar el código fuente del proyecto en el contenedor
+      - ./target:/app/target  # Si es necesario para los archivos compilados
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/yourdb
+      - SPRING_DATASOURCE_USERNAME=youruser
+      - SPRING_DATASOURCE_PASSWORD=yourpassword
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
+    depends_on:
+      - db
+      - redis
+    networks:
+      - backend
+
+  # Servicio de PostgreSQL
+  db:
+    image: postgres:13
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: youruser
+      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_DB: yourdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+
+  # Servicio de Redis
+  redis:
+    image: redis:6
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - backend
+
+volumes:
+  postgres_data:
+
+networks:
+  backend:
+    driver: bridge

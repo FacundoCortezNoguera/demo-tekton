@@ -1,0 +1,75 @@
+{
+	"info": {
+		"_postman_id": "acec4e87-f65a-491e-9c51-8ae896501460",
+		"name": "teklon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4456948",
+		"_collection_link": "https://speeding-astronaut-259636.postman.co/workspace/GCBA~b9a7f5c6-9d01-45ab-a55a-ca269dc1146a/collection/4456948-acec4e87-f65a-491e-9c51-8ae896501460?action=share&source=collection_link&creator=4456948"
+	},
+	"item": [
+		{
+			"name": "Calculate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/calculate?num1=100&num2=1231",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculate"
+					],
+					"query": [
+						{
+							"key": "num1",
+							"value": "100"
+						},
+						{
+							"key": "num2",
+							"value": "1231"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/logs",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"logs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "External-service",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/external/percentage",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"external",
+						"percentage"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
